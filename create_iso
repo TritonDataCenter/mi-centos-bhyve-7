@@ -12,12 +12,14 @@ CUR_TIME=$(date +%FT%TZ)
 CUSTOM_RPMS=./RPMS
 DVD_LAYOUT=/data/centos-7-iso-layout
 DVD_TITLE='CentOS-7-Joyent'
-ISO=CentOS-7-x86_64-Minimal-1808-01.iso
+#ISO=CentOS-7-x86_64-Minimal-1808-01.iso
+ISO=CentOS-7-x86_64-Minimal-1804.iso
 ISO_DIR=/data/fetched-iso
 ISO_FILENAME=./centos-7-joyent.iso
 KS_CFG=./ks.cfg
 GUESTTOOLS=sdc-vmtools
-MIRROR=https://buildlogs.centos.org/rolling/7/isos/x86_64
+#MIRROR=https://buildlogs.centos.org/rolling/7/isos/x86_64
+MIRROR=https://sjc.edge.kernel.org/centos/7/isos/x86_64
 MOUNT_POINT=/mnt/centos7
 
 fetch_iso() {
