@@ -1,7 +1,12 @@
 # Centos 7 ISO Builder
 
-This repo allows one to create a custom CentOS 7 ISO with the necessary packages and
-tooling for deploying on SmartOS and the Joyent Public Cloud.
+This repo allows one to create a custom CentOS 7 ISO with the necessary packages
+and tooling for deploying on SmartOS and the Joyent Public Cloud.  That ISO can
+then be used to generate a hybrid (kvm/bhyve) image using `create-image`
+(global zone) or `sdc-vmtools/bin/create-hybrid-image` (in zone).
+
+Configuration files and scripts that are common to many images should be
+maintained in [sdc-vmtools](https://github.com/joyent/sdc-vmtools).
 
 ## Requirements
 
@@ -12,6 +17,13 @@ In order to use this repo, you need to have the following:
  * sdc-vmtools
 
 ## Setup
+
+This relies on the sdc-vmtools repo as a submodule.  You can get the right
+version of that with:
+
+```
+git submodules update --init
+```
 
 Included is a `setup_env.sh` script to be run inside the CentOS instance.  This
 script will install the necessary packages required to create a custom ISO.

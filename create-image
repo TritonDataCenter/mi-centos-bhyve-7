@@ -99,6 +99,21 @@ do
   esac
 done
 
+#
+# The initial version of this script, which suffers from much copy-pasta, must
+# run in a SmartOS global zone.  With some small tweaks, a SmartOS zone is able
+# to run qemu with kvm.  If we are running in a zone, switch over to the common
+# version of this script that is able to run in a zone.
+#
+if [[ $(zonename) != global ]]; then
+	chi=$(dirname "$0")/sdc-vmtools/bin/create-hybrid-image
+	if [[ ! -f "$chi" ]]; then
+		git submodule update --init
+	fi
+	# Only a subset of the options are relevant: don't pass "$@".
+	exec "$chi" -i "$ISO" -n "$IMAGE_NAME" -d "$DESC" -u "$HOMEPAGE"
+fi
+
 if [[ -z ${ISO} || -z ${IMAGE_NAME} || -z ${DESC} || -z ${HOMEPAGE} \
   || -z ${OWNER_UUID} || -z ${IP} || -z ${NETMASK} || -z ${VLAN_ID} \
   || -z ${NETWORK_UUID} || -z ${GATEWAY} ]]; then
